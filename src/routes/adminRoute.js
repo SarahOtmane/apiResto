@@ -14,15 +14,12 @@ router
 router
     .route('/')
     .all(jwtMiddleware.verifyToken)
+    .get(jwtMiddleware.verifyToken, adminController.getAllAdmin)
     .put(adminController.putAdmin)
     .delete(adminController.deleteAdmin)
 
 router
-    .route('/admin')
-    .get(jwtMiddleware.verifyToken, adminController.getAllAdmin)
-
-router
-    .route('/admin/id_user')
+    .route('/id_user')
     .get(jwtMiddleware.verifyToken, adminController.deleteAdminByAdmin)
 
 module.exports = router;
