@@ -18,7 +18,11 @@ exports.createAnInfo = async (req, res) => {
             return res.status(401).json({ message: 'Cette info existe déjà.' });
         }
 
-        let newInfo = await Info.create(req.body);
+        let newInfo = await Info.create({
+            name: req.body.name,
+            content: req.body.content,
+            id_resto: req.params.id_resto
+        });
 
         res.status(201).json({ 
             message: `Info créé avec succès. Le nom : ${newInfo.name}` 
