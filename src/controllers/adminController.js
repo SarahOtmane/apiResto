@@ -140,6 +140,37 @@ exports.deleteAdmin = async (req, res) => {
 };
 
 
+/**********************************************************
+            MÉTHODE POUR SUPPRIMER UN ADMIN (BY ADMIN)
+**********************************************************/
+/*
+    Fonction qui permet de supprimer un compte utilisateur
+
+    Les vérifications : 
+        - Vérifier que l'utilisateur existe
+
+*/
+exports.deleteAdmin = async (req, res) => {
+    try {
+        const deletedAdmin = await Admin.destroy({
+            where: { id: req.params.id_user }
+        });
+        
+        if (!deletedAdmin) {
+            return res.status(404).json({ message: 'Utilisateur non trouvé.' });
+        }
+
+        if (req.user.role==='user') {
+            return res.status(404).json({ message: 'Vous n avez pas l autorisation' });
+        }
+
+        res.status(201).json({ message: 'Utilisateur supprimé avec succès.' });
+
+    } catch (error) {
+        res.status(500).json({message: "Erreur lors du traitement des données."});
+    }
+};
+
 
 /**********************************************************
             MÉTHODE POUR LISTER TOUS LES ADMIN
