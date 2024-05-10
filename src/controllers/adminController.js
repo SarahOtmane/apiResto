@@ -150,7 +150,7 @@ exports.deleteAdmin = async (req, res) => {
         - Vérifier que l'utilisateur existe
 
 */
-exports.deleteAdmin = async (req, res) => {
+exports.deleteAdminByAdmin = async (req, res) => {
     try {
         const deletedAdmin = await Admin.destroy({
             where: { id: req.params.id_user }
