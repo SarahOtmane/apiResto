@@ -76,7 +76,7 @@ exports.getResto = async (req, res) => {
 */
 exports.putResto = async (req, res) => {
     try {
-        const resto = await Resto.findOne({ where: { id: req.params.id_info } });
+        const resto = await Resto.findOne({ where: { id: req.params.id_resto } });
 
         if(!resto){
             return res.status(404).json({ message: 'Resto non trouvé.' });
@@ -111,7 +111,7 @@ exports.deleteResto = async (req, res) => {
     try {
         
         const deleteResto = await Resto.destroy({
-            where: { id: req.params.id_info }
+            where: { id: req.params.id_resto }
         });
         
         if (!deleteResto) {
@@ -143,7 +143,7 @@ exports.getAlResto = async (req, res) => {
         const restos = await Resto.findAll();
         
         if (!restos) {
-            return res.status(404).json({ message: 'Auncune information trouvée.' });
+            return res.status(404).json({ message: 'Auncun resto trouvé.' });
         }
 
         res.status(201).json(restos);
