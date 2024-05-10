@@ -31,6 +31,10 @@ const Admin = sequelize.define('Admin', {
     underscored: true
 });
 
+// Définition des relations
+const Resto = require('./restoModel');
+Admin.belongsTo(Resto, { foreignKey: 'id_resto'});
+
 
 // Synchronisation du modèle avec la base de données
 (async () => {
