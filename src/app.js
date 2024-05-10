@@ -32,7 +32,10 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 // Configuration des routes
 const adminRoute = require('./routes/adminRoute.js'); 
-app.use('/admins', userRoute);
+app.use('/admins', adminRoute);
+
+const restoRoute = require('./routes/restoRoute.js'); 
+app.use('/restos', restoRoute);
 
 // Démarrage du serveur
 app.listen(port, () => {
