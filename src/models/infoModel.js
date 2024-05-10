@@ -31,6 +31,10 @@ const Info = sequelize.define('Info', {
     underscored: true
 });
 
+// Définition des relations
+const Resto = require('./restoModel');
+Info.belongsTo(Resto, { foreignKey: 'id_resto'});
+
 // Synchronisation du modèle avec la base de données
 (async () => {
     try {
