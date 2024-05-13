@@ -31,19 +31,11 @@ const Admin = sequelize.define('Admin', {
             isIn: [['user', 'admin']]
         }
     },
-    id_resto: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    }
 }, {
     tableName: 'admins',
     timestamps: true,
     underscored: true
 });
-
-// Définition des relations
-const Resto = require('./restoModel');
-Admin.belongsTo(Resto, { foreignKey: 'id_resto'});
 
 
 // Synchronisation du modèle avec la base de données
