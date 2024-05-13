@@ -8,7 +8,7 @@ services:
       - .env
     command: /bin/sh -c 'npm install && npm start'
     ports:
-      - '3004:3003'
+      - '3004:3004'
     volumes:
       - ./src:/app
     depends_on:
@@ -42,7 +42,7 @@ services:
   pma:
     image: phpmyadmin/phpmyadmin
     ports:
-      - '8084:80'
+      - '8084:84'
     restart: always
     depends_on:
       - db
