@@ -14,6 +14,9 @@ router
     .all(jwtMiddleware.verifyToken)
     .put(planTableController.updatePlanTable)
     .delete(planTableController.deletePlanTable)
+
+router
+    .route('/:id_resto/:id_planTable')
     .get(planTableController.getPlanTable)
 
 
