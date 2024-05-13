@@ -40,6 +40,9 @@ app.use('/restos', restoRoute);
 const planTableRoute = require('./routes/planTableRoute.js'); 
 app.use('/planTables', planTableRoute);
 
+const tableRoute = require('./routes/tableRoute.js'); 
+app.use('/tables', tableRoute);
+
 // Démarrage du serveur
 app.listen(port, () => {
     console.log(`L'application écoute sur le port ${port}`);
