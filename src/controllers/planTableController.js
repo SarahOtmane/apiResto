@@ -120,7 +120,7 @@ exports.updatePlanTable = async(req, res) =>{
 */
 exports.deletePlanTable = async (req, res) => {
     try {
-        const deletePlanTable = await Admin.destroy({
+        const deletePlanTable = await PlanTable.destroy({
             where: { 
                 id_resto: req.params.id_resto,
                 id: req.params.id_planTable,
