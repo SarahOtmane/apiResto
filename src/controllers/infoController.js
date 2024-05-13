@@ -1,4 +1,5 @@
 const Info = require('../models/infoModel.js');
+const Resto = require('../models/restoModel.js');
 
 
 /**********************************************************
@@ -8,11 +9,17 @@ const Info = require('../models/infoModel.js');
     Fonction qui permet à l'admin de créer une info
 
     Les vérifications : 
+        - l existance du resto
         - l existance de l info
 
 */
 exports.createAnInfo = async (req, res) => {
     try {
+        const existingResto = await Resto.findOne({ where: { id: req.params.id_resto } });
+        if (!existingResto) {
+            return res.status(404).json({ message: 'Ce resto nexiste pas.' });
+        }
+
         const existingInfo = await Info.findOne({ where: { name: req.body.name } });
         if (existingInfo) {
             return res.status(401).json({ message: 'Cette info existe déjà.' });
