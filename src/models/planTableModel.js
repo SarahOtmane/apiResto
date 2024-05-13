@@ -18,7 +18,7 @@ const PlanTable = sequelize.define('PlanTable', {
         allowNull: false,
     },
     nbTable:{
-        type: DataTypes.ARRAY,
+        type: DataTypes.INTEGER,
         allowNull: false,
     },
     full:{
