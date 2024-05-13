@@ -18,7 +18,11 @@ exports.createResto= async (req, res) => {
             return res.status(401).json({ message: 'Ce Resto existe déjà.' });
         }
 
-        let newResto = await Resto.create(req.body);
+        let newResto = await Resto.create({
+            name: req.body.name,
+            salles: req.body.salles,
+            nbSalles: req.body.salles.length()
+        });
 
         res.status(201).json({ 
             message: `Resto créé avec succès. Le nom : ${newResto.name}` 
@@ -84,6 +88,8 @@ exports.putResto = async (req, res) => {
 
         await resto.update({ 
             name: req.body.name,
+            salles: req.body.salles,
+            nbSalles: req.body.salles.length()
         });
 
         
