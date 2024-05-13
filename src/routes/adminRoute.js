@@ -18,8 +18,5 @@ router
     .put(adminController.putAdmin)
     .delete(adminController.deleteAdmin)
 
-router
-    .route('/id_user')
-    .get(jwtMiddleware.verifyToken, adminController.deleteAdminByAdmin)
 
 module.exports = router;
