@@ -4,7 +4,7 @@ const Resto = require('../models/restoModel');
 
 
 /**********************************************************
-            MÉTHODE POUR ENREGISTRER UN PLAN DE TABLE
+            MÉTHODE POUR CRÉER UN PLAN DE TABLE
 **********************************************************/
 /*
     Fonction qui permet de créer un plan de table
