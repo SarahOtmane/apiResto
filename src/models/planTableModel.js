@@ -13,11 +13,15 @@ const PlanTable = sequelize.define('PlanTable', {
         autoIncrement: true,
         primaryKey: true,
     },
-    nbPlace:{
+    salle:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    nbPlaces:{
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    nbTable:{
+    nbTables:{
         type: DataTypes.INTEGER,
         allowNull: false,
     },
