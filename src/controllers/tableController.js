@@ -98,3 +98,41 @@ exports.updateTable = async(req, res) =>{
         res.status(500).json({message: "Erreur lors du traitement des données."});
     }
 }
+
+
+
+/**********************************************************
+            MÉTHODE POUR SUPPRIMER UNE TABLE
+**********************************************************/
+/*
+    Fonction qui permet de supprimer un plan de table
+
+    Les vérifications : 
+        - l existance du plan de table
+        - l existance de la table
+
+*/
+exports.deleteTable = async (req, res) => {
+    try {
+        const deleteTable = await Table.destroy({
+            where: { 
+                id_planTable: req.params.id_planTable,
+                id_table: req.params.id_table,
+            }
+        });
+
+        const existingPlan = await PlanTable.findOne({ where: { id: req.params.id_planTable } });
+        if (!existingPlan) {
+            return res.status(404).json({ message: 'Ce plan de table nexiste pas.' });
+        }
+        
+        if (!deleteTable) {
+            return res.status(404).json({ message: 'Table non trouvée.' });
+        }
+
+        res.status(201).json({ message: 'Table supprimée avec succès.' });
+
+    } catch (error) {
+        res.status(500).json({message: "Erreur lors du traitement des données."});
+    }
+};
