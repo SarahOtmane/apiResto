@@ -12,6 +12,7 @@ const Resto = require('../models/restoModel');
     Les vérifications : 
         - l existance du resto
         - les plan de tables nont pas deja été ajoutés
+        - il n ya pas de plan de travail qui correspond a cette salle
 
 */
 exports.createPlanTable = async(req, res) =>{
@@ -26,7 +27,25 @@ exports.createPlanTable = async(req, res) =>{
             return res.status(401).json({message: `Le restaurant ${existingResto.name} a ${existingResto.nbSalles} salle(s). Vous avez déja entré les plans de tables correspondants à toutes les salles.`})
         }
         
+        const existingPlan = await PlanTable.findOne({where: {
+            id_resto: req.params.id_resto,
+            name: req.body.name,
+        }});
+        if (!existingPlan) {
+            return res.status(401).json({ message: 'Le plan de travail correpondant à cette salle existe déja.' });
+        }
 
+        const planTable = await PlanTable.create({
+            id_resto: req.params.id_resto,
+            name: req.body.name,
+            nbTables: req.body.nbTables,
+            nbPlaces: req.body.nbPlaces,
+            full: false,
+        });
+
+        res.status(201).json({ 
+            message: `Plan de table crée avec succès` 
+        });
 
     } catch (error) {
         res.status(500).json({message: "Erreur lors du traitement des données."});
