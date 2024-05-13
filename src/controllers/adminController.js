@@ -11,7 +11,6 @@ require('dotenv').config();
 
     Les vérifications : 
         - Vérifier que l'email n'existe pas dans la base de donnée
-        - Vérifier que le role != admin
 
 */
 exports.registerAdmin = async (req, res) => {
@@ -19,10 +18,6 @@ exports.registerAdmin = async (req, res) => {
         const existingEmail = await Admin.findOne({ where: { email: req.body.email } });
         if (existingEmail) {
             return res.status(409).json({ message: 'Cet email existe déjà.' });
-        }
-
-        if (req.body.role === 'admin') {
-            return res.status(401).json({ message: 'Vous ne pouvez pas créer un utilisateur avec le rôle admin.'});
         }
 
         let newAdmin = await Admin.create(req.body);
@@ -130,38 +125,6 @@ exports.deleteAdmin = async (req, res) => {
         
         if (!deletedAdmin) {
             return res.status(404).json({ message: 'Utilisateur non trouvé.' });
-        }
-
-        res.status(201).json({ message: 'Utilisateur supprimé avec succès.' });
-
-    } catch (error) {
-        res.status(500).json({message: "Erreur lors du traitement des données."});
-    }
-};
-
-
-/**********************************************************
-            MÉTHODE POUR SUPPRIMER UN ADMIN (BY ADMIN)
-**********************************************************/
-/*
-    Fonction qui permet de supprimer un compte utilisateur
-
-    Les vérifications : 
-        - Vérifier que l'utilisateur existe
-
-*/
-exports.deleteAdminByAdmin = async (req, res) => {
-    try {
-        const deletedAdmin = await Admin.destroy({
-            where: { id: req.params.id_user }
-        });
-        
-        if (!deletedAdmin) {
-            return res.status(404).json({ message: 'Utilisateur non trouvé.' });
-        }
-
-        if (req.user.role==='user') {
-            return res.status(404).json({ message: 'Vous n avez pas l autorisation' });
         }
 
         res.status(201).json({ message: 'Utilisateur supprimé avec succès.' });
