@@ -9,6 +9,10 @@ router
     .post(planTableController.createPlanTable)
 
 
+router
+    .route('/:id_resto/:id_planTable')
+    .all(jwtMiddleware.verifyToken)
+    .post(planTableController.updatePlanTable)
 
 
 
