@@ -36,8 +36,8 @@ const Table = sequelize.define('Table', {
 });
 
 // Définition des relations
-const Resto = require('./restoModel');
-Table.belongsTo(Resto, { foreignKey: 'id_resto'});
+const PlanTable = require('./planTableModel');
+Table.belongsTo(PlanTable, { foreignKey: 'id_plantables'});
 
 
 // Synchronisation du modèle avec la base de données
