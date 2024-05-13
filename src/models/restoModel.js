@@ -18,7 +18,7 @@ const Resto = sequelize.define('Resto', {
         unique: true
     } 
 }, {
-    tableName: 'Restos',
+    tableName: 'restos',
     timestamps: true,
     underscored: true
 });
