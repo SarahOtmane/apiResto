@@ -12,6 +12,7 @@ router
 
 router  
     .route('/:id_planTable/:id_table')
+    .all(jwtMiddleware.verifyToken)
     .put(tableController.updateTable)
     .delete(tableController.deleteTable)
 
