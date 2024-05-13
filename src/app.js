@@ -37,6 +37,9 @@ app.use('/admins', adminRoute);
 const restoRoute = require('./routes/restoRoute.js'); 
 app.use('/restos', restoRoute);
 
+const planTableRoute = require('./routes/planTableRoute.js'); 
+app.use('/planTables', planTableRoute);
+
 // Démarrage du serveur
 app.listen(port, () => {
     console.log(`L'application écoute sur le port ${port}`);
