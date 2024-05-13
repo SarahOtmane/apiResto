@@ -21,16 +21,6 @@ const Admin = sequelize.define('Admin', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    role:{
-        // admin => compte administrateur
-        // user => compteadmin créer par l'admin lui même
-        type: DataTypes.STRING,
-        allowNull: false,
-        defaultValue: 'user',
-        validate: {
-            isIn: [['user', 'admin']]
-        }
-    },
 }, {
     tableName: 'admins',
     timestamps: true,
