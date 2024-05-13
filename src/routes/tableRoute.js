@@ -14,3 +14,8 @@ router
     .route('/:id_planTable/:id_table')
     .put(tableController.updateTable)
     .delete(tableController.deleteTable)
+
+
+router
+    .route('/:id_planTable/:id_table')
+    .get(tableController.getTable)
