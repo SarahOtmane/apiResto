@@ -39,7 +39,7 @@ const Reservation = sequelize.define('Reservation', {
         allowNull: false,
     },
     numTable:{
-        type: DataTypes.ARRAY,
+        type: DataTypes.ARRAY(DataTypes.INTEGER),
         allowNull: false,
     },
     id_resto: {
