@@ -136,3 +136,39 @@ exports.deleteTable = async (req, res) => {
         res.status(500).json({message: "Erreur lors du traitement des données."});
     }
 };
+
+
+
+
+/**********************************************************
+            MÉTHODE POUR LISTER UNE TABLE
+**********************************************************/
+/*
+    Fonction qui permet de lister les détails d'une table
+
+    Les vérifications : 
+        - l existance du plan de table
+        - l existance de la table
+
+*/
+exports.getTable = async (req, res) => {
+    try {
+        const existingPlan = await PlanTable.findOne({ where: { id: req.params.id_planTable } });
+        if (!existingPlan) {
+            return res.status(404).json({ message: 'Ce plan de table nexiste pas.' });
+        }
+        
+        const existingTable = await Table.findOne({where: {
+            id_planTable: req.params.id_planTable,
+            id_table: req.params.id_table,
+        }});
+        if (existingTable) {
+            return res.status(401).json({ message: 'La table existe pas.' });
+        }
+
+        res.status(201).json(existingTable);
+
+    } catch (error) {
+        res.status(500).json({message: "Erreur lors du traitement des données."});
+    }
+};
