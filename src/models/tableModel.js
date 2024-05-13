@@ -25,7 +25,7 @@ const Table = sequelize.define('Table', {
         type: DataTypes.BOOLEAN,
         allowNull: false,
     },
-    id_resto: {
+    id_plantables: {
         type: DataTypes.INTEGER,
         allowNull: false,
     }

@@ -45,6 +45,10 @@ const Reservation = sequelize.define('Reservation', {
     id_resto: {
         type: DataTypes.INTEGER,
         allowNull: false,
+    },
+    id_planTables: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
     }
 }, {
     tableName: 'reservations',
