@@ -14,6 +14,7 @@ router
     .all(jwtMiddleware.verifyToken)
     .put(planTableController.updatePlanTable)
     .delete(planTableController.deletePlanTable)
+    .get(planTableController.getPlanTable)
 
 
 
