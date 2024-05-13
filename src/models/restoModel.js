@@ -22,7 +22,7 @@ const Resto = sequelize.define('Resto', {
         allowNull: false,
     }, 
     salles: {
-        type: DataTypes.ARRAY,
+        type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
     }, 
 }, {
