@@ -157,7 +157,7 @@ exports.deletePlanTable = async (req, res) => {
         - l existance du plan de travail
 
 */
-exports.deletePlanTable = async (req, res) => {
+exports.getPlanTable = async (req, res) => {
     try {
         const existingResto = await Resto.findOne({ where: { id: req.params.id_resto } });
         if (!existingResto) {
