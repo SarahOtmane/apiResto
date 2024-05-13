@@ -150,7 +150,7 @@ exports.deletePlanTable = async (req, res) => {
             MÉTHODE POUR LISTER UN PLAN DE TABLE
 **********************************************************/
 /*
-    Fonction qui permet de supprimer un plan de table
+    Fonction qui permet de lister les details un plan de table
 
     Les vérifications : 
         - l existance du resto
