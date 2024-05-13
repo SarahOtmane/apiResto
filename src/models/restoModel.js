@@ -16,7 +16,15 @@ const Resto = sequelize.define('Resto', {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
-    } 
+    }, 
+    nbSalles: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    }, 
+    salles: {
+        type: DataTypes.ARRAY,
+        allowNull: false,
+    }, 
 }, {
     tableName: 'restos',
     timestamps: true,
