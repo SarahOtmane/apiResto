@@ -20,3 +20,6 @@ router
 router
     .route('/:id_planTable/:id_table')
     .get(tableController.getTable)
+
+
+module.exports = router;
