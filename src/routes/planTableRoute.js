@@ -6,7 +6,7 @@ const jwtMiddleware = require('../middlewares/jwtMiddleware');
 router
     .route('/:id_resto')
     .all(jwtMiddleware.verifyToken)
-    .post()
+    .post(planTableController.createPlanTable)
 
 
 
