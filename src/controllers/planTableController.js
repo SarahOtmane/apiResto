@@ -142,3 +142,39 @@ exports.deletePlanTable = async (req, res) => {
         res.status(500).json({message: "Erreur lors du traitement des données."});
     }
 };
+
+
+
+
+/**********************************************************
+            MÉTHODE POUR LISTER UN PLAN DE TABLE
+**********************************************************/
+/*
+    Fonction qui permet de supprimer un plan de table
+
+    Les vérifications : 
+        - l existance du resto
+        - l existance du plan de travail
+
+*/
+exports.deletePlanTable = async (req, res) => {
+    try {
+        const existingResto = await Resto.findOne({ where: { id: req.params.id_resto } });
+        if (!existingResto) {
+            return res.status(404).json({ message: 'Ce resto nexiste pas.' });
+        }
+        
+        const existingPlan = await PlanTable.findOne({where: {
+            id_resto: req.params.id_resto,
+            id: req.params.id_planTable,
+        }});
+        if (!existingPlan) {
+            return res.status(401).json({ message: 'Le plan de table n existe pas.' });
+        }
+
+        res.status(201).json(existingPlan);
+
+    } catch (error) {
+        res.status(500).json({message: "Erreur lors du traitement des données."});
+    }
+};
