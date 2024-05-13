@@ -12,7 +12,7 @@ const Resto = require('../models/restoModel');
     Les vérifications : 
         - l existance du resto
         - les plan de tables nont pas deja été ajoutés
-        - il n ya pas de plan de travail qui correspond a cette salle
+        - il n ya pas de plan de table qui correspond a cette salle
 
 */
 exports.createPlanTable = async(req, res) =>{
@@ -61,8 +61,8 @@ exports.createPlanTable = async(req, res) =>{
 
     Les vérifications : 
         - l existance du resto
-        - l existance du plan de travail
-        - il n ya pas de plan de travail qui correspond a cette salle
+        - l existance du plan de table
+        - il n ya pas de plan de table qui correspond a cette salle
 
 */
 exports.updatePlanTable = async(req, res) =>{
@@ -115,7 +115,7 @@ exports.updatePlanTable = async(req, res) =>{
 
     Les vérifications : 
         - l existance du resto
-        - l existance du plan de travail
+        - l existance du plan de table
 
 */
 exports.deletePlanTable = async (req, res) => {
@@ -154,7 +154,7 @@ exports.deletePlanTable = async (req, res) => {
 
     Les vérifications : 
         - l existance du resto
-        - l existance du plan de travail
+        - l existance du plan de table
 
 */
 exports.getPlanTable = async (req, res) => {
