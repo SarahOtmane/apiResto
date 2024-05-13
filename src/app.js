@@ -43,6 +43,9 @@ app.use('/planTables', planTableRoute);
 const tableRoute = require('./routes/tableRoute.js'); 
 app.use('/tables', tableRoute);
 
+const reservationRoute = require('./routes/reservationRoute.js'); 
+app.use('/reservations', reservationRoute);
+
 // Démarrage du serveur
 app.listen(port, () => {
     console.log(`L'application écoute sur le port ${port}`);
