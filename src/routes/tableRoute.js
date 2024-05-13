@@ -8,3 +8,8 @@ router
     .route('/:id_planTable')
     .all(jwtMiddleware.verifyToken)
     .post(tableController.createTable)
+
+
+router  
+    .route('/:id_planTable/:id_table')
+    .put(tableController.updateTable)
