@@ -1,7 +1,6 @@
 const { Sequelize, DataTypes } = require('sequelize');
-// const bcrypt = require('bcrypt');
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_Admin, process.env.DB_PASSWORD, {
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
     host: "db",
     dialect: "mysql"
 });
@@ -39,7 +38,7 @@ const Reservation = sequelize.define('Reservation', {
         allowNull: false,
     },
     numTable:{
-        type: DataTypes.ARRAY(DataTypes.INTEGER),
+        type: DataTypes.STRING,
         allowNull: false,
     },
     id_resto: {
