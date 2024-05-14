@@ -35,6 +35,8 @@ exports.createResa = async(req, res) =>{
             return res.status(404).json({ message: 'Aucun plan de table pour ce restaurant.' });
         }
 
+        const salleLibre = [];
+
     } catch (error) {
         res.status(500).json({message: "Erreur lors du traitement des données."});
     }
