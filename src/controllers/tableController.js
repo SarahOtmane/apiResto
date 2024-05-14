@@ -32,7 +32,7 @@ exports.createTable = async(req, res) =>{
         const table = await Table.create({
             id_planTable: req.params.id_planTable,
             numero: req.body.numero,
-            nbPlaces: req.body.nbPlaces,
+            nbPlace: req.body.nbPlace,
             taken: false,
         });
 
