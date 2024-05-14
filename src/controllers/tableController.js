@@ -79,11 +79,11 @@ exports.updateTable = async(req, res) =>{
             id_planTable: req.params.id_planTable,
             numero: req.body.numero,
         }});
-        if (table.id != existingTable.id) {
+        if (table && table.id != existingTable.id) {
             return res.status(401).json({ message: 'Une table portant ce numero existe déja' });
         }
-        
-        await table.update({
+
+        await existingTable.update({
             id_planTable: req.params.id_planTable,
             numero: req.body.numero,
             nbPlaces: req.body.nbPlaces,
