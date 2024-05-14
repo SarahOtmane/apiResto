@@ -4,4 +4,9 @@ const reservationController = require('../controllers/reservationController');
 const jwtMiddleware = require('../middlewares/jwtMiddleware');
 
 
+router 
+    .route('/:id_resto')
+    .all(jwtMiddleware.verifyToken)
+    .post(reservationController.createResa)
+
 module.exports = router;
