@@ -42,12 +42,6 @@ const PlanTable = sequelize.define('PlanTable', {
 const Resto = require('./restoModel');
 PlanTable.belongsTo(Resto, { foreignKey: 'id_resto'});
 
-const Table = require('./tableModel');
-PlanTable.hasMany(Table, { foreignKey: 'id_planTable'});
-
-const Reservation = require('./reservationModel');
-PlanTable.hasMany(Reservation, { foreignKey: 'id_planTable'});
-
 
 // Synchronisation du modèle avec la base de données
 (async () => {
