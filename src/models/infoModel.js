@@ -5,18 +5,18 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     dialect: "mysql"
 });
 
+
 const Info = sequelize.define('Info', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
     },
-    name: {
+    name:{
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true
     },
-    content: {
+    content:{
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -33,6 +33,7 @@ const Info = sequelize.define('Info', {
 // Définition des relations
 const Resto = require('./restoModel');
 Info.belongsTo(Resto, { foreignKey: 'id_resto'});
+
 
 // Synchronisation du modèle avec la base de données
 (async () => {
