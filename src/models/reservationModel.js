@@ -58,7 +58,8 @@ const Reservation = sequelize.define('Reservation', {
 // Définition des relations
 const Resto = require('./restoModel');
 Reservation.belongsTo(Resto, { foreignKey: 'id_resto'});
-
+const PlanTable = require('./planTableModel');
+Reservation.belongsTo(PlanTable, { foreignKey: 'id_plantables'});
 
 // Synchronisation du modèle avec la base de données
 (async () => {
