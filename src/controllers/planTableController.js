@@ -178,3 +178,40 @@ exports.getPlanTable = async (req, res) => {
         res.status(500).json({message: "Erreur lors du traitement des données."});
     }
 };
+
+
+
+
+
+
+/**************************************************************************
+            MÉTHODE POUR LISTER TOUS LES PLAN DE TABLES DUN RESTO
+**************************************************************************/
+/*
+    Fonction qui permet de lister tous les plans de tables dun resto
+
+    Les vérifications : 
+        - l existance du resto
+        - l existance des plans de tables
+
+*/
+exports.getAllPlanTable = async (req, res) => {
+    try {
+        const existingResto = await Resto.findOne({ where: { id: req.params.id_resto } });
+        if (!existingResto) {
+            return res.status(404).json({ message: 'Ce resto nexiste pas.' });
+        }
+        
+        const existingPlans = await PlanTable.findAll({where: {
+            id_resto: req.params.id_resto
+        }});
+        if (!existingPlans) {
+            return res.status(401).json({ message: 'Le plan de table n existe pas.' });
+        }
+
+        res.status(201).json(existingPlans);
+
+    } catch (error) {
+        res.status(500).json({message: "Erreur lors du traitement des données."});
+    }
+};
