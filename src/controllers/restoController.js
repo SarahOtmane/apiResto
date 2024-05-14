@@ -18,10 +18,12 @@ exports.createResto= async (req, res) => {
             return res.status(401).json({ message: 'Ce Resto existe déjà.' });
         }
 
+        const salle = req.body.salles.split(',');
+
         let newResto = await Resto.create({
             name: req.body.name,
             salles: req.body.salles,
-            nbSalles: req.body.salles.length()
+            nbSalles: salle.length
         });
 
         res.status(201).json({ 
@@ -86,10 +88,12 @@ exports.putResto = async (req, res) => {
             return res.status(404).json({ message: 'Resto non trouvé.' });
         }
 
+        const salle = req.body.salles.split(',');
+
         await resto.update({ 
             name: req.body.name,
             salles: req.body.salles,
-            nbSalles: req.body.salles.length()
+            nbSalles: salle.length
         });
 
         
