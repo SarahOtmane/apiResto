@@ -172,3 +172,37 @@ exports.getTable = async (req, res) => {
         res.status(500).json({message: "Erreur lors du traitement des données."});
     }
 };
+
+
+
+/*************************************************************************
+            MÉTHODE POUR LISTER TOUTES LES TABLES D'UN PLAN DE TABLE
+*************************************************************************/
+/*
+    Fonction qui permet de lister les détails d'une table
+
+    Les vérifications : 
+        - l existance du plan de table
+        - l existance de la table
+
+*/
+exports.getAllTable = async (req, res) => {
+    try {
+        const existingPlan = await PlanTable.findOne({ where: { id: req.params.id_planTable } });
+        if (!existingPlan) {
+            return res.status(404).json({ message: 'Ce plan de table nexiste pas.' });
+        }
+        
+        const existingTables = await Table.findAll({where: {
+            id_planTable: req.params.id_planTable,
+        }});
+        if (existingTables) {
+            return res.status(401).json({ message: 'La table existe pas.' });
+        }
+
+        res.status(201).json(existingTables);
+
+    } catch (error) {
+        res.status(500).json({message: "Erreur lors du traitement des données."});
+    }
+};
