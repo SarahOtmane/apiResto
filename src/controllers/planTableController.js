@@ -29,7 +29,7 @@ exports.createPlanTable = async(req, res) =>{
         
         const existingPlan = await PlanTable.findOne({where: {
             id_resto: req.params.id_resto,
-            name: req.body.name,
+            salle: req.body.salle,
         }});
         if (existingPlan) {
             return res.status(401).json({ message: 'Le plan de table correpondant à cette salle existe déja.' });
@@ -37,7 +37,7 @@ exports.createPlanTable = async(req, res) =>{
 
         const planTable = await PlanTable.create({
             id_resto: req.params.id_resto,
-            name: req.body.name,
+            salle: req.body.salle,
             nbTables: req.body.nbTables,
             nbPlaces: req.body.nbPlaces,
             full: false,
