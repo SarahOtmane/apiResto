@@ -13,7 +13,7 @@ router
 
 
 router
-    .route('/id_resto')
+    .route('/:id_resto')
     .all(jwtMiddleware.verifyToken)
     .get(restoController.getResto)
     .put(restoController.putResto)
