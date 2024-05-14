@@ -160,9 +160,9 @@ exports.getTable = async (req, res) => {
         
         const existingTable = await Table.findOne({where: {
             id_planTable: req.params.id_planTable,
-            id_table: req.params.id_table,
+            id: req.params.id_table,
         }});
-        if (existingTable) {
+        if (!existingTable) {
             return res.status(401).json({ message: 'La table existe pas.' });
         }
 
