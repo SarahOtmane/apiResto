@@ -197,7 +197,7 @@ exports.getAllTable = async (req, res) => {
             id_planTable: req.params.id_planTable,
         }});
         if (existingTables) {
-            return res.status(401).json({ message: 'La table existe pas.' });
+            return res.status(401).json({ message: 'Aucune table enreg' });
         }
 
         res.status(201).json(existingTables);
