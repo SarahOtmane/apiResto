@@ -93,8 +93,14 @@ exports.putAnInfo = async (req, res) => {
             return res.status(404).json({ message: 'Information non trouvé.' });
         }
 
+        const existingInfo = await Info.findOne({ where: { name: req.body.name, id_resto: req.params.id_resto} });
+        if (existingInfo) {
+            return res.status(401).json({ message: 'Cette info existe déjà.' });
+        }
+
         await info.update({ 
             content: req.body.content,
+            name: req.body.content
         });
 
         
