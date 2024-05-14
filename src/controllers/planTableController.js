@@ -82,17 +82,17 @@ exports.updatePlanTable = async(req, res) =>{
 
         const planTable = await PlanTable.findOne({where: {
             id_resto: req.params.id_resto,
-            name: req.body.name,
+            salle: req.body.salle,
         }});
-        if (planTable) {
+        if (planTable.id !=  existingPlan.id) {
             return res.status(401).json({ message: 'Le plan de table correpondant à cette salle existe déja.' });
         }
         
         await planTable.update({
-            name: req.body.name,
+            salle: req.body.salle,
             nbTables: req.body.nbTables,
             nbPlaces: req.body.nbPlaces,
-            full: false,
+            full: req.body.full,
         });
 
         res.status(201).json({ 
