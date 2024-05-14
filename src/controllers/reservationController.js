@@ -17,6 +17,14 @@ const PlanTable = require('../models/planTableModel');
 
 */
 
-exports.createResa = async() =>{
-    
+exports.createResa = async(req, res) =>{
+    try {
+        const existingResto = await Resto.findOne({ where: { id: req.params.id_resto } });
+        if (!existingResto) {
+            return res.status(404).json({ message: 'Ce resto nexiste pas.' });
+        }
+        
+    } catch (error) {
+        res.status(500).json({message: "Erreur lors du traitement des données."});
+    }
 }
