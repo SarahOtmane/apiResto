@@ -117,7 +117,7 @@ exports.deleteTable = async (req, res) => {
         const deleteTable = await Table.destroy({
             where: { 
                 id_planTable: req.params.id_planTable,
-                id_table: req.params.id_table,
+                id: req.params.id_table,
             }
         });
 
