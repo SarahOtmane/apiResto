@@ -24,7 +24,7 @@ const Table = sequelize.define('Table', {
         type: DataTypes.BOOLEAN,
         allowNull: false,
     },
-    id_plantables: {
+    id_plantable: {
         type: DataTypes.INTEGER,
         allowNull: false,
     }
@@ -36,7 +36,7 @@ const Table = sequelize.define('Table', {
 
 // Définition des relations
 const PlanTable = require('./planTableModel');
-Table.belongsTo(PlanTable, { foreignKey: 'id_plantables'});
+Table.belongsTo(PlanTable, { foreignKey: 'id_plantable'});
 
 
 // Synchronisation du modèle avec la base de données

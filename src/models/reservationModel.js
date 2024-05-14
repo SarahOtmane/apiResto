@@ -45,7 +45,7 @@ const Reservation = sequelize.define('Reservation', {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    id_planTables: {
+    id_planTable: {
         type: DataTypes.INTEGER,
         allowNull: false,
     }
@@ -59,7 +59,7 @@ const Reservation = sequelize.define('Reservation', {
 const Resto = require('./restoModel');
 Reservation.belongsTo(Resto, { foreignKey: 'id_resto'});
 const PlanTable = require('./planTableModel');
-Reservation.belongsTo(PlanTable, { foreignKey: 'id_plantables'});
+Reservation.belongsTo(PlanTable, { foreignKey: 'id_plantable'});
 
 // Synchronisation du modèle avec la base de données
 (async () => {
