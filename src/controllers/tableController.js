@@ -196,7 +196,7 @@ exports.getAllTable = async (req, res) => {
         const existingTables = await Table.findAll({where: {
             id_planTable: req.params.id_planTable,
         }});
-        if (existingTables) {
+        if (!existingTables) {
             return res.status(401).json({ message: 'Aucune table enreg' });
         }
 
