@@ -40,6 +40,9 @@ app.use('/restos', restoRoute);
 const planTableRoute = require('./routes/planTableRoute.js'); 
 app.use('/planTables', planTableRoute);
 
+const infoRoute = require('./routes/infoRoute.js'); 
+app.use('/infos', infoRoute);
+
 const tableRoute = require('./routes/tableRoute.js'); 
 app.use('/tables', tableRoute);
 
