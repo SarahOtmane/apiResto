@@ -69,9 +69,9 @@ exports.updateTable = async(req, res) =>{
         
         const existingTable = await Table.findOne({where: {
             id_planTable: req.params.id_planTable,
-            id_table: req.params.id_table,
+            id: req.params.id_table,
         }});
-        if (existingTable) {
+        if (!existingTable) {
             return res.status(401).json({ message: 'La table existe pas.' });
         }
 
@@ -79,7 +79,7 @@ exports.updateTable = async(req, res) =>{
             id_planTable: req.params.id_planTable,
             numero: req.body.numero,
         }});
-        if (table) {
+        if (table.id != existingTable.id) {
             return res.status(401).json({ message: 'Une table portant ce numero existe déja' });
         }
         
