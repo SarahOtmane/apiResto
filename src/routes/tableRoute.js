@@ -10,7 +10,7 @@ router
     .post(tableController.createTable)
     .get(tableController.getAllTable)
 
-.router
+router
     .route('/:id_planTable/:id_table')
     .all(jwtMiddleware.verifyToken)
     .put(tableController.updateTable)
