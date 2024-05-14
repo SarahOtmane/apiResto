@@ -7,6 +7,7 @@ router
     .route('/:id_resto')
     .all(jwtMiddleware.verifyToken)
     .post(planTableController.createPlanTable)
+    .get(planTableController.getAllPlanTable)
 
 
 router
