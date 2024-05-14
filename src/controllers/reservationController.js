@@ -30,6 +30,11 @@ exports.createResa = async(req, res) =>{
             return res.status(404).json({ message: 'Ce resto nexiste pas.' });
         }
 
+        const existingPlanTable = await PlanTable.findAll({where: {id_resto: req.params.id_resto}});
+        if (!existingPlanTable) {
+            return res.status(404).json({ message: 'Aucun plan de table pour ce restaurant.' });
+        }
+
     } catch (error) {
         res.status(500).json({message: "Erreur lors du traitement des données."});
     }
