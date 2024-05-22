@@ -9,6 +9,11 @@ router
     .post(reservationController.createResa)
 
 router 
+    .route('/:id_resto/:id_plantable')
+    .all(jwtMiddleware.verifyToken)
+    .post(reservationController.getAllResa)
+
+router 
     .route('/:id_resto/:id_plantable/:id_resa')
     .all(jwtMiddleware.verifyToken)
     .post(reservationController.getResa)
