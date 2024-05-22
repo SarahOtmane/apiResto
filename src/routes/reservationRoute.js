@@ -5,7 +5,7 @@ const jwtMiddleware = require('../middlewares/jwtMiddleware');
 
 
 router 
-    .route('/:id_resto')
+    .route('/:id_resto/:id_plantable')
     .all(jwtMiddleware.verifyToken)
     .post(reservationController.createResa)
 
