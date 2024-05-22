@@ -11,11 +11,11 @@ router
 router 
     .route('/:id_resto/:id_plantable')
     .all(jwtMiddleware.verifyToken)
-    .post(reservationController.getAllResa)
+    .get(reservationController.getAllResa)
 
 router 
     .route('/:id_resto/:id_plantable/:id_resa')
     .all(jwtMiddleware.verifyToken)
-    .post(reservationController.getResa)
+    .get(reservationController.getResa)
 
 module.exports = router;
