@@ -34,7 +34,7 @@ exports.createResa = async(req, res) =>{
             return res.status(404).json({ message: 'Aucune place libre' });
         }
 
-        const tables = await Table.findAll({ where: { id_planTable: req.params.id_plantable, taken: false } });
+        let tables = await Table.findAll({ where: { id_planTable: req.params.id_plantable, taken: false } });
 
         //Recup le nb de places libres dans la salle
         let nbPlacesLibres = 0;
@@ -73,16 +73,26 @@ exports.createResa = async(req, res) =>{
                 };
             }
 
-            let numTable = `${tab[0].numero}`;
+            let numTable = '';
 
+            //reserve les tables
             for ( i = 0; i < tab.length; i++) {
                 await tab[i].update({
                     taken: true,
                 });
-                
-                numTable += '.' + existingTable.numero
+
+                numTable += tab[i].numero + ',';
             }
 
+            //mettre hors reservation le plan de table si ya plus aucune table libre
+            tables = await Table.findAll({ where: { id_planTable: req.params.id_plantable, taken: false } });
+            if(tables.length === 0){
+                await existingPlanTable.update({
+                    full: true
+                })
+            }
+
+            //creer la reservation
             let reservation = await Reservation.create({
                 email: req.body.email,
                 phone: req.body.phone,
@@ -94,8 +104,9 @@ exports.createResa = async(req, res) =>{
                 id_resto: req.params.id_resto,
                 id_planTable: req.params.id_plantable,
     
-            });     
-            res.status(201).json(`Reservation réussie : ${reservation.email}`);    
+            });   
+
+            return res.status(200).json(reservation);  
         }
 
         //si ya des tables qu'on peut reservé
@@ -112,6 +123,13 @@ exports.createResa = async(req, res) =>{
             taken: true,
         });
 
+        tables = await Table.findAll({ where: { id_planTable: req.params.id_plantable, taken: false } });
+        if(tables.length === 0){
+            await existingPlanTable.update({
+                full: true
+            })
+        }
+
         let reservation = await Reservation.create({
             email: req.body.email,
             phone: req.body.phone,
@@ -125,7 +143,7 @@ exports.createResa = async(req, res) =>{
 
         });
 
-        res.status(201).json(`Reservation réussie : ${reservation.email}`);
+        res.status(201).json(reservation);
 
     } catch (error) {
         res.status(500).json({message: "Erreur lors du traitement des données."});
