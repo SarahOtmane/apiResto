@@ -149,3 +149,41 @@ exports.createResa = async(req, res) =>{
         res.status(500).json({message: "Erreur lors du traitement des données."});
     }
 }
+
+
+/**********************************************************
+            MÉTHODE POUR LISTER UNE RESERVATION
+**********************************************************/
+/*
+    Fonction qui permet à une personne de lister une reservation
+
+    Les vérifications : 
+        - Vérifier que le resto en question existe toujours
+        - Vérifier que le plan de table existe
+        - Vérifier que la reserv existe
+*/
+exports.getResa = async (req, res) => {
+    try {
+        const existingResto = await Resto.findOne({ where: { id: req.params.id_resto } });
+        if (!existingResto) {
+            return res.status(404).json({ message: 'Ce resto nexiste pas.' });
+        }
+
+        const existingPlan = await PlanTable.findOne({ where: { id: req.params.id_planTable } });
+        if (!existingPlan) {
+            return res.status(404).json({ message: 'Ce plan de table nexiste pas.' });
+        }
+        
+        const existingResa = await Reservation.findOne({where: {
+            id: req.params.id_resa
+        }});
+        if (!existingResa) {
+            return res.status(401).json({ message: 'Aucune reservation' });
+        }
+
+        res.status(201).json(existingTable);
+
+    } catch (error) {
+        res.status(500).json({message: "Erreur lors du traitement des données."});
+    }
+};
