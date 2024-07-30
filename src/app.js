@@ -2,7 +2,7 @@ const express = require('express');
 const sequelize = require("sequelize"); //orm node js pour les bases de données relationnelles
 
 const app = express();
-const port = 3003;
+const port = 3030;
 
 
 // Configuration de la base de données
