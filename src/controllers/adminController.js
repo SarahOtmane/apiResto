@@ -1,6 +1,7 @@
 const Admin = require('../models/adminModel.js');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
+const argon2 = require('argon2');
 
 
 /**********************************************************
@@ -14,21 +15,7 @@ require('dotenv').config();
 
 */
 exports.registerAdmin = async (req, res) => {
-    try {
-        const existingEmail = await Admin.findOne({ where: { email: req.body.email } });
-        if (existingEmail) {
-            return res.status(409).json({ message: 'Cet email existe déjà.' });
-        }
-
-        let newAdmin = await Admin.create(req.body);
-
-        res.status(201).json({ 
-            message: `Utilisateur créé avec succès. L'email : ${newAdmin.email}` 
-        });
-    } 
-    catch (error) {
-        res.status(500).json({message: "Erreur lors du traitement des données."});
-    }
+    
 };
 
 
@@ -51,9 +38,9 @@ exports.loginAdmin = async (req, res) => {
             return res.status(404).json({ message: 'Utilisateur non trouvé.' });
         }
 
-        // const validPassword = await bcrypt.compare(req.body.password, admin.password);
+        const validPassword = await argon2.verify(person.password, req.body.password);
 
-        if (admin.password === req.body.password) {
+        if (validPassword) {
             const adminData = {
                 id: admin.id,
                 email: admin.email,
