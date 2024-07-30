@@ -72,25 +72,7 @@ exports.loginAdmin = async (req, res) => {
 
 */
 exports.putAdmin = async (req, res) => {
-    try {
-        const admin = await Admin.findOne({ where: { id: req.user.id } });
-
-        if(!admin){
-            return res.status(404).json({ message: 'Utilisateur non trouvé.' });
-        }
-
-        // req.body.password = await bcrypt.hash(req.body.password, 10);
-
-        await admin.update({ 
-            password: req.body.password,
-        });
-
-        
-        res.status(201).json({ message: 'Utilisateur mis à jour avec succès.' });
-
-    } catch (error) {
-        res.status(500).json({message: "Erreur lors du traitement des données."});
-    }
+    
 };
 
 
