@@ -5,8 +5,8 @@ const createTables = require('./services/TableManager');
 
 async function main() {
     try {
-        const sequelize = await connectDatabase();
-        await createTables(sequelize);
+        await connectDatabase();
+        await createTables();
         startServer(3004);
     } catch (error) {
         console.error('Erreur lors du démarrage de l\'application :', error);
