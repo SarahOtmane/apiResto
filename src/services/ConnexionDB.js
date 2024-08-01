@@ -6,7 +6,7 @@ export default function Connexion(){
         host: "db",
         dialect: "mysql"
     });
-    
+
     // Test de la connexion à la base de données
     db.authenticate()
         .then(() => {
@@ -15,4 +15,12 @@ export default function Connexion(){
         .catch(err => {
             console.error("Impossible de se connecter à la base de données:", err);
     });
+
+    return sequelize.authenticate()
+        .then(() => {
+            console.log("Connecté à la base de données MySQL!");
+        })
+        .catch(err => {
+            console.error("Impossible de se connecter à la base de données:", err);
+        });
 }
