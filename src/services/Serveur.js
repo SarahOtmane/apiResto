@@ -1,14 +1,14 @@
 const express = require('express');
 
 const swaggerUi = require('swagger-ui-express');
-const swaggerSpec = require('./docs/config.js');
+const swaggerSpec = require('../docs/config.js');
 
-const adminRoute = require('./routes/adminRoute.js'); 
-const restoRoute = require('./routes/restoRoute.js'); 
-const planTableRoute = require('./routes/planTableRoute.js'); 
-const infoRoute = require('./routes/infoRoute.js'); 
-const tableRoute = require('./routes/tableRoute.js'); 
-const reservationRoute = require('./routes/reservationRoute.js'); 
+const adminRoute = require('../routes/adminRoute.js'); 
+const restoRoute = require('../routes/restoRoute.js'); 
+const planTableRoute = require('../routes/planTableRoute.js'); 
+const infoRoute = require('../routes/infoRoute.js'); 
+const tableRoute = require('../routes/tableRoute.js'); 
+const reservationRoute = require('../routes/reservationRoute.js'); 
 
 
 function StartServeur(port){
