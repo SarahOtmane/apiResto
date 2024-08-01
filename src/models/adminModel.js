@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const connectDatabase = require('./services/ConnexionDB');
 
-const sequelize = await connectDatabase();
+const sequelize = connectDatabase();
 
 const Admin = sequelize.define('Admin', {
     id: {
