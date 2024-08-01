@@ -11,7 +11,7 @@ const tableRoute = require('./routes/tableRoute.js');
 const reservationRoute = require('./routes/reservationRoute.js'); 
 
 
-export default function StartServeur(port){
+function StartServeur(port){
     const app = express();
 
     app.use(express.urlencoded({ extended: true }));
@@ -32,3 +32,5 @@ export default function StartServeur(port){
         console.log(`Serveur démarré sur le port ${port}`);
     });
 }
+
+module.exports = StartServeur;

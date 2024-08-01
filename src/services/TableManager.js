@@ -7,7 +7,7 @@ const Table = require('../models/tableModel');
 
 
 
-export default async function TableManager(){
+async function TableManager(){
     try {
         await Admin.sync();
         await Resto.sync();
@@ -21,3 +21,5 @@ export default async function TableManager(){
         console.error("Erreur lors de la création des tables :", error);
     }
 }
+
+module.exports = TableManager;

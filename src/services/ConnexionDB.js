@@ -1,6 +1,6 @@
 const sequelize = require("sequelize"); //orm node js pour les bases de données relationnelles
 
-export default function Connexion(){
+function Connexion(){
     // Configuration de la base de données
     const db = new sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
         host: "db",
@@ -24,3 +24,5 @@ export default function Connexion(){
             console.error("Impossible de se connecter à la base de données:", err);
         });
 }
+
+module.exports = Connexion;
