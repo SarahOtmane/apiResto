@@ -24,10 +24,6 @@ const PlanTable = sequelize.define('PlanTable', {
     full:{
         type: DataTypes.BOOLEAN,
         allowNull: false,
-    },
-    id_resto: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
     }
 }, {
     tableName: 'planTables',
@@ -37,19 +33,8 @@ const PlanTable = sequelize.define('PlanTable', {
 
 // Définition des relations
 const Resto = require('./restoModel');
+Resto.hasMany(PlanTable, { foreignKey: 'id_resto'});
 PlanTable.belongsTo(Resto, { foreignKey: 'id_resto'});
-
-
-// Synchronisation du modèle avec la base de données
-(async () => {
-    try {
-        //ne pas forcer a supp et recréer la table
-        await PlanTable.sync({ force: false });
-        console.log("Modèle PlanTable synchronisé avec la base de données.");
-    } catch (error) {
-        console.error("Erreur lors de la synchronisation du modèle PlanTable:", error);
-    }
-})();
 
 
 module.exports = PlanTable;

@@ -38,14 +38,6 @@ const Reservation = sequelize.define('Reservation', {
     numTable:{
         type: DataTypes.STRING,
         allowNull: false,
-    },
-    id_resto: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    id_planTable: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
     }
 }, {
     tableName: 'reservations',
@@ -55,21 +47,12 @@ const Reservation = sequelize.define('Reservation', {
 
 // Définition des relations
 const Resto = require('./restoModel');
+Resto.hasMany(Reservation, { foreignKey: 'id_resto'});
 Reservation.belongsTo(Resto, { foreignKey: 'id_resto'});
 
 const PlanTable = require('./planTableModel');
+PlanTable.hasMany(Reservation, { foreignKey: 'id_planTable'});
 Reservation.belongsTo(PlanTable, { foreignKey: 'id_plantable'});
-
-// Synchronisation du modèle avec la base de données
-(async () => {
-    try {
-        //ne pas forcer a supp et recréer la table
-        await Reservation.sync({ force: false });
-        console.log("Modèle Reservation synchronisé avec la base de données.");
-    } catch (error) {
-        console.error("Erreur lors de la synchronisation du modèle Reservation:", error);
-    }
-})();
 
 
 module.exports = Reservation;

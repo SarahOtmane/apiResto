@@ -28,16 +28,6 @@ const Resto = sequelize.define('Resto', {
     underscored: true
 });
 
-// Synchronisation du modèle avec la base de données
-(async () => {
-    try {
-        //ne pas forcer a supp et recréer la table
-        await Resto.sync({ force: false });
-        console.log("Modèle Resto synchronisé avec la base de données.");
-    } catch (error) {
-        console.error("Erreur lors de la synchronisation du modèle Resto:", error);
-    }
-})();
 
 
 module.exports = Resto;

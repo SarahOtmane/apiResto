@@ -23,17 +23,4 @@ const Admin = sequelize.define('Admin', {
     underscored: true
 });
 
-
-// Synchronisation du modèle avec la base de données
-(async () => {
-    try {
-        //ne pas forcer a supp et recréer la table
-        await Admin.sync({ force: false });
-        console.log("Modèle Admin synchronisé avec la base de données.");
-    } catch (error) {
-        console.error("Erreur lors de la synchronisation du modèle Admin:", error);
-    }
-})();
-
-
 module.exports = Admin;
