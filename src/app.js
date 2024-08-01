@@ -7,7 +7,7 @@ async function main() {
     try {
         await connectDatabase();
         await createTables();
-        startServer(3004);
+        startServer(3030);
     } catch (error) {
         console.error('Erreur lors du démarrage de l\'application :', error);
     }

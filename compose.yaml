@@ -41,7 +41,7 @@ services:
   pma:
     image: phpmyadmin/phpmyadmin
     ports:
-      - '8085:85'
+      - '8085:80'
     restart: always
     depends_on:
       - db
