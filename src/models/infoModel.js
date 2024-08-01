@@ -25,7 +25,7 @@ const Info = sequelize.define('Info', {
 
 // Définition des relations
 const Resto = require('./restoModel');
-Resto.hasMany(Inof, { foreignKey: 'id_resto'});
+Resto.hasMany(Info, { foreignKey: 'id_resto'});
 Info.belongsTo(Resto, { foreignKey: 'id_resto'});
 
 
