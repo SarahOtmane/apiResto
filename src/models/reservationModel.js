@@ -1,9 +1,7 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
+const connectDatabase = require('./services/ConnexionDB');
 
-const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
-    host: "db",
-    dialect: "mysql"
-});
+const sequelize = await connectDatabase();
 
 
 const Reservation = sequelize.define('Reservation', {
