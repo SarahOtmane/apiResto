@@ -9,8 +9,8 @@ const Table = require('../models/tableModel');
 
 async function TableManager(){
     try {
-        await Admin.sync();
         await Resto.sync();
+        await Admin.sync();
         await PlanTable.sync();
         await Table.sync();
         await Info.sync();

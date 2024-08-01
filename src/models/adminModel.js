@@ -23,4 +23,9 @@ const Admin = sequelize.define('Admin', {
     underscored: true
 });
 
+// Définition des relations
+const Resto = require('./restoModel');
+Resto.hasMany(Admin, { foreignKey: 'id_resto'});
+Admin.belongsTo(Resto, { foreignKey: 'id_resto'});
+
 module.exports = Admin;
