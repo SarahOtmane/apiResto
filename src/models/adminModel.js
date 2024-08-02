@@ -17,6 +17,14 @@ const Admin = sequelize.define('Admin', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    name : {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    firstName : {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
 }, {
     tableName: 'admins',
     timestamps: true,
